@@ -11,9 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-coverage/
-.vscode
-vitest/
 
 # Editor directories and files
 .vscode/*
