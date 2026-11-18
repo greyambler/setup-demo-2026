@@ -51,6 +51,7 @@
    package.json => "test": "npx vitest --dom"
 
 6. настроить пайплайн для деплоя собранной страницы на github pages
+   git push -u
 
 https://github.com/vvscode/otus--jsbasic/blob/master/lessons/lesson13/task.md
 
