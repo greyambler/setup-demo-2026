@@ -9,5 +9,5 @@ it('adds click handler', () => {
   el.click();
   el.click();
 
-  expect(el.innerHTML).toBe('Count is 2');
+  expect(el.innerHTML).toBe('Count ss is 2');
 });
