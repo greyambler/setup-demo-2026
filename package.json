@@ -25,7 +25,7 @@
     "vitest": "^4.1.12"
   },
   "lint-staged": {
-    "_.{js,jsx}": "npx eslint --fix",
-    "_.{js,jsx,json,html,yml,css,scss,md}": "npx prettier --check"
+    "*.{js,jsx}": "npx eslint --fix",
+    "*.{js,jsx,json,html,yml,css,scss,md}": "npx prettier --check"
   }
 }
