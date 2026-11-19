@@ -8,5 +8,9 @@ export default defineConfig([
     plugins: { js },
     extends: ['js/recommended'],
     languageOptions: { globals: globals.browser },
+    rules: {
+      ...js.configs.recommended.rules,
+      semi: ['error', 'always'],
+    },
   },
 ]);
