@@ -47,7 +47,9 @@
 
 5. настроить пайплайн для запуска тестов и линтера
    npm install -D vitest
-   npx vitest init browser
+
+   # npx vitest init browser
+
    package.json => "test": "npx vitest --dom"
 
 6. настроить пайплайн для деплоя собранной страницы на github pages
