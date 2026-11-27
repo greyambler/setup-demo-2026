@@ -1,14 +1,130 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/setup-demo-2026/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>setup-demo-2026</title>
-    <script type="module" crossorigin src="/setup-demo-2026/assets/index-BX_X9XYG.js"></script>
-    <link rel="stylesheet" crossorigin href="/setup-demo-2026/assets/index-CsUDhMuy.css">
+    <style>.form_group_hide{display:none}.box_content{gap:10px;display:flex}.box_main{border:3px solid gray;border-radius:12px;flex-direction:column;gap:10px;margin-bottom:20px;padding:10px;display:flex}.box_test{border:1px solid gray;border-radius:12px;flex-direction:row;justify-content:flex-start;align-items:flex-start;gap:10px;margin-bottom:20px;padding:10px;display:flex}.creat_box,.item_task,form{border:1px solid gray;border-radius:12px;padding:7px}.box{background-color:#234567;width:100px;height:100px;margin-top:10px}.products{flex-wrap:wrap;gap:20px;display:flex}.product{border:1px solid #000;border-radius:10px;flex-direction:column;align-items:center;gap:10px;width:200px;display:flex}.product img{width:100px;height:100px}</style>
   </head>
+
   <body>
-    <div id="app"></div>
+    <!-- <div id="app"></div>
+    <script type="module" src="/src/main.js"></script> 
+    -->
+
+    <div class="box_main">
+      <div class="creat_box">
+        <h2>Создать box</h2>
+        <button id="creatBox">Создать box</button>
+        <div class="box_content">
+          <div class="box"></div>
+        </div>
+      </div>
+
+      <div class="box_test">
+        <div class="item_task">
+          <h2 id="title">Привет Мир</h2>
+          <p class="text">Это параграф 1</p>
+          <p class="text">Это параграф 2</p>
+          <p class="text">Это параграф 3</p>
+        </div>
+
+        <p class="item_task">
+          <button class="product_button_minus">-1</button>
+          <span class="product_count">Это параграф 3</span>
+          <button class="product_button_plus">+1</button>
+        </p>
+
+        <form action="#" class="form">
+          <h2>Оставьте свои данные</h2>
+          <div class="form_group">
+            <label for="name">Имя</label>
+            <input type="text" name="name" id="name" class="input_name" />
+          </div>
+          <p class="input_text"></p>
+          <button type="submit">Отправить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="products"></div>
+
+    <script>
+      fetch('https://fakestoreapi.com/products')
+        .then((response) => response.json())
+        .then((data) => {
+          const productsEl = document.querySelector('.products');
+          data.forEach((product) => {
+            const productEl = document.createElement('div');
+            productEl.classList.add('product');
+            productEl.innerHTML = `
+                        <img class="product__image" src="${product.image}" alt="${product.title}">
+                        <h3 class="product__title">${product.title}</h3>
+                        <p class="product__price">${product.price}</p>
+                        <p><button disabled class="product__button_minus">-</button> <span class="product__count">1</span> <button
+                class="product__button_plus">+</button></p>
+                    `;
+            productsEl.appendChild(productEl);
+          });
+        });
+
+      const creatBoxEl = document.querySelector('#creatBox');
+      const boxContentEl = document.querySelector('.box_content');
+
+      creatBoxEl.addEventListener('click', () => {
+        const boxEl = document.createElement('div');
+        boxEl.classList.add('box');
+        boxContentEl.appendChild(boxEl);
+      });
+
+      const formEl = document.querySelector('.form');
+      const formGroupEl = document.querySelector('.form_group');
+
+      const inputEl = document.querySelector('.input_name');
+      const inputTextEl = document.querySelector('.input_text');
+
+      formEl.addEventListener('submit', () => {
+        event.preventDefault();
+        inputTextEl.textContent = 'Форма отправлена на сервер';
+        formGroupEl.classList.add('form_group_hide');
+      });
+
+      inputEl.addEventListener('input', () => {
+        const value = event.target.value;
+        inputTextEl.textContent = value;
+      });
+
+      console.log(title);
+      const textEls = document.querySelectorAll('.text');
+      console.log(textEls);
+      textEls.forEach((el) => {
+        console.log(el);
+      });
+
+      let count = 0;
+      const product_button_minusEl = document.querySelector('.product_button_minus');
+      const product_button_plusEl = document.querySelector('.product_button_plus');
+      const product_countEl = document.querySelector('.product_count');
+
+      product_countEl.textContent = count;
+      product_button_minusEl.disabled = true;
+
+      product_button_minusEl.addEventListener('click', () => {
+        if (count > 0) {
+          count--;
+          product_countEl.textContent = count;
+        }
+        console.log(count);
+        if (count === 0) {
+          product_button_minusEl.disabled = true;
+        }
+      });
+      product_button_plusEl.addEventListener('click', () => {
+        count++;
+        product_countEl.textContent = count;
+        product_button_minusEl.disabled = false;
+      });
+    </script>
   </body>
 </html>
